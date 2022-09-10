@@ -5,14 +5,26 @@ let computerSelection;
 let playerSelection;
 let playerTally = 0;
 let computerTally = 0;
-let score;
+
+function game() {
+    console.log(playRound());
+    console.log(gameScore());
+    return commentary();
+}
+
+function playRound() {
+    getPlayerSelection();
+    getCompSelection();
+    decider();
+    return result;
+}
 
 //Retrieve player input and convert so always capital first letter followed by lowercase
 function getPlayerSelection() {
     playerAnswer = prompt('Select either Rock, Paper, or Scissors in order to save humanity!');
     playerSelection = playerAnswer.charAt(0).toUpperCase() + playerAnswer.slice(1).toLowerCase();
     return playerSelection;
-    }
+ }
 
 //Get random selection by converting random numbers to choice
 function getCompSelection() {
@@ -49,11 +61,13 @@ function decider() {
     } 
 }
 
-function gameScore() {
+//Tells the score of the current game
+function gameScore(score) {
     score = `Player: ${playerTally}\nComputer: ${computerTally}`
     return score;
 }
 
+//Gives motivation depending on the score
 function commentary() {
     if (computerTally == 3) {
         console.log('Congratulations! You let humanity die.')
@@ -66,17 +80,4 @@ function commentary() {
     } else {
         console.log('Do not lose chump.')
     }
-}
-
-function playRound() {
-    getPlayerSelection();
-    getCompSelection();
-    decider();
-    return result;
-}
-
-function game() {
-    console.log(playRound());
-    console.log(gameScore());
-    return commentary();
 }
