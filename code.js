@@ -5,7 +5,7 @@ let computerSelection;
 let playerSelection;
 let playerTally = 0;
 let computerTally = 0;
-let score = `Player: ${playerTally}\nComputer: ${computerTally}`;
+let score;
 
 //Retrieve player input and convert so always capital first letter followed by lowercase
 function getPlayerSelection() {
@@ -35,13 +35,13 @@ function decider() {
         (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
         (playerSelection == 'Paper' && computerSelection == 'Rock')) {
             result = `You Win! ${playerSelection} beats ${computerSelection}.`;
-            playerScore();
+            playerTally++;
             return result;
     } else if ((computerSelection == 'Rock' && playerSelection == 'Scissors') ||
         (computerSelection == 'Scissors' && playerSelection == 'Paper') ||
         (computerSelection == 'Paper' && playerSelection == 'Rock')) {
             result = `You Lose! ${computerSelection} beats ${playerSelection}.`;
-            computerScore();
+            computerTally++;
             return result;
     } else if (computerSelection == playerSelection) {
             result = 'It\'s a tie! Try again losers!';
@@ -49,21 +49,34 @@ function decider() {
     } 
 }
 
-function playerScore() {
-    playerTally++;
+function gameScore() {
+    score = `Player: ${playerTally}\nComputer: ${computerTally}`
+    return score;
 }
 
-function computerScore() {
-    computerTally++;
+function commentary() {
+    if (computerTally == 3) {
+        console.log('Congratulations! You let humanity die.')
+    } else if (playerTally == 3) {
+        console.log('You saved humanity! Thank you for your service.')
+    } else if (playerTally > computerTally) {
+        console.log('You have almost saved us! Keep going.')
+    } else if (playerTally < computerTally) {
+        console.log('Do not disappoint us.')
+    } else {
+        console.log('Do not lose chump.')
+    }
 }
+
 function playRound() {
     getPlayerSelection();
     getCompSelection();
     decider();
-    console.log(result);
+    return result;
 }
 
 function game() {
-    playRound();
-    console.log(score);
+    console.log(playRound());
+    console.log(gameScore());
+    return commentary();
 }
