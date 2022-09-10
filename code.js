@@ -3,6 +3,9 @@ let playerAnswer;
 let computerNumber;
 let computerSelection;
 let playerSelection;
+let playerTally = 0;
+let computerTally = 0;
+let score = `Player: ${playerTally}\nComputer: ${computerTally}`;
 
 //Retrieve player input and convert so always capital first letter followed by lowercase
 function getPlayerSelection() {
@@ -27,16 +30,18 @@ function getCompSelection() {
 } 
 
 //Compare computerSelection to playerSelection to get results
-function playRound() {
+function decider() {
     if ((playerSelection == 'Rock' && computerSelection == 'Scissors') ||
         (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
         (playerSelection == 'Paper' && computerSelection == 'Rock')) {
             result = `You Win! ${playerSelection} beats ${computerSelection}.`;
+            playerScore();
             return result;
     } else if ((computerSelection == 'Rock' && playerSelection == 'Scissors') ||
         (computerSelection == 'Scissors' && playerSelection == 'Paper') ||
         (computerSelection == 'Paper' && playerSelection == 'Rock')) {
             result = `You Lose! ${computerSelection} beats ${playerSelection}.`;
+            computerScore();
             return result;
     } else if (computerSelection == playerSelection) {
             result = 'It\'s a tie! Try again losers!';
@@ -44,9 +49,21 @@ function playRound() {
     } 
 }
 
-function game() {
+function playerScore() {
+    playerTally++;
+}
+
+function computerScore() {
+    computerTally++;
+}
+function playRound() {
     getPlayerSelection();
     getCompSelection();
+    decider();
+    console.log(result);
+}
+
+function game() {
     playRound();
-    return result;
+    console.log(score);
 }
