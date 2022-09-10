@@ -1,29 +1,40 @@
-
 let result;
 let playerAnswer;
 let computerNumber;
-let computerSelection
+let computerSelection;
 let playerSelection;
 
 function game() {
-    playerAnswer = prompt('Select either Rock, Paper, or Scissors in order to save humanity!');
-    playerSelection = playerAnswer.charAt(0).toUpperCase() + playerAnswer.slice(1);
-    return playround();
+    getPlayerSelection();
+    getCompSelection();
+    playRound();
 }
 
-function getCompGuess() {
+function getPlayerSelection() {
+    playerAnswer = prompt('Select either Rock, Paper, or Scissors in order to save humanity!');
+    playerSelection = playerAnswer.charAt(0).toUpperCase() + playerAnswer.slice(1).toLowerCase();
+    console.log(playerSelection);
+    return playerSelection;
+    }
+
+function getCompSelection() {
     computerNumber = Math.floor((Math.random() * 100) + 1);
     if (computerNumber < 33) {
-        computerSelection = 'Rock'
+        computerSelection = 'Rock';
+        console.log(computerSelection);
+        return computerSelection;
     } else if (computerNumber > 33 && computerSelection < 67) {
-        computerSelection = 'Paper'
-    } else if (computerNumber > 67) {
-        computerSelection = 'Scissors'
+        computerSelection = 'Paper';
+        console.log(computerSelection);
+        return computerSelection;
+    } else {
+        computerSelection = 'Scissors';
+        console.log(computerSelection);
+        return computerSelection;
     }
 } 
 
-function playround() {
-
+function playRound(playerSelection,) {
     if ((playerSelection == 'Rock' && computerSelection == 'Scissors') ||
         (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
         (playerSelection == 'Paper' && computerSelection == 'Rock')) {
@@ -37,8 +48,5 @@ function playround() {
     } else if (computerSelection == playerSelection) {
             result = 'It\'s a tie! Try again losers!';
             return result;
-    } else {
-            result = 'I do not know what happened here.';
-            return result;
-    }
+    } 
 }
